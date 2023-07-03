@@ -1,0 +1,14 @@
+gradio==2.3.0
+torch
+transformers
+torchaudio
+SpeechRecognition
+pygame
+pydub 
+sounddevice
+soundfile
+gtts
+huggingsound
+soundfile
+kenlm
+pyctcdecode
