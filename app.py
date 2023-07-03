@@ -38,7 +38,7 @@ def play_audio(audio_path):
         time.sleep(0.1)
 
 # Define the Gradio interface
-context_input = gr.inputs.Textbox(label="Enter Context From Which Questions Will Be Asked")
+context_input = gr.inputs.Textbox(label="Enter Context From Which Questions Will Be Asked ")
 question_input = gr.inputs.Textbox(label="Ask The Question")
 # audio_input = gr.inputs.Audio(label="Question Audio", type="filepath")
 audio_input = gr.inputs.Audio(label="Ask The Question Through Microphone",source="microphone", type="filepath")
