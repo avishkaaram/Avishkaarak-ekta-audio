@@ -1,4 +1,3 @@
-import torch
 import torchaudio
 import gradio as gr
 from transformers import pipeline
@@ -18,6 +17,7 @@ def answer_question(context, question=None, audio=None):
     if audio is not None:
         text = transcriber(audio)
         question_text = text['text']
+        print(question_text)
     else:
         question_text = question
 
@@ -38,13 +38,12 @@ def play_audio(audio_path):
         time.sleep(0.1)
 
 # Define the Gradio interface
-context_input = gr.inputs.Textbox(label="Enter Context From Which Questions Will Be Asked ")
-question_input = gr.inputs.Textbox(label="Ask The Question")
-# audio_input = gr.inputs.Audio(label="Question Audio", type="filepath")
-audio_input = gr.inputs.Audio(label="Ask The Question Through Microphone",source="microphone", type="filepath")
+context_input = gr.components.Textbox(label="Context")
+question_input = gr.components.Textbox(label="Question")
+audio_input = gr.components.Audio(source="microphone", type="filepath")
 
-output_text = gr.outputs.Textbox(label="Answer")
-output_audio = gr.outputs.Audio(label="Answer Audio", type="numpy")
+output_text = gr.components.Textbox(label="Answer")
+output_audio = gr.components.Audio(label="Answer Audio", type="numpy")
 
 interface = gr.Interface(
     fn=answer_question,
@@ -57,6 +56,5 @@ interface = gr.Interface(
         ["OpenAI is famous for developing GPT-3.", "What is OpenAI known for?"],
     ]
 )
-
 # Launch the Gradio interface
 interface.launch()
